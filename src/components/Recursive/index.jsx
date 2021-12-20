@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 
 import mocks from '../../mocks';
-import { addChildren } from '../../untils';
+import { addChildren } from '../../utils';
 
 import CategoryItem from '../CategoryItem';
 import { Container } from './style';

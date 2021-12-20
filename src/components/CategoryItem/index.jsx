@@ -21,6 +21,7 @@ const ChildrenItem = ({ children, label, id, onAddCallback }) => {
 
     if (val) {
       onAddCallback(id, val);
+      setIsOpen(true);
     }
   };
 
