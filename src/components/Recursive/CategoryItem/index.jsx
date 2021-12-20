@@ -1,25 +1,54 @@
 import React, { useState } from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import OpenedIcon from '@material-ui/icons/ExpandMore';
+import ClosedIcon from '@material-ui/icons/ChevronRight';
+import AddCircle from '@material-ui/icons/AddCircleOutline';
 
-import { Container, Header, HeaderInner, Label, Children } from './style';
+import {
+  Container,
+  Header,
+  HeaderInner,
+  Label,
+  Button,
+  AddButton,
+} from './style';
 
-const ChildrenItem = ({ children, label, id }) => {
+const ChildrenItem = ({ children, label, id, onAddCallBack }) => {
+  const [toggleAddButton, setGoggleAddButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [newItem, setNewItem] = useState('');
+
+  const handleAdd = () => {
+    const val = prompt('Enter name:');
+
+    if (val) {
+      onAddCallBack(id, val);
+    }
+  };
 
   return (
-    <Container hasChildren={!!children}>
-      <Header onClick={() => setIsOpen(!isOpen)}>
-        <HeaderInner>
+    <Container>
+      <Header
+        onMouseEnter={() => setGoggleAddButton(true)}
+        onMouseLeave={() => setGoggleAddButton(false)}
+      >
+        <HeaderInner
+          hasChildren={!!children}
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <Label>{label}</Label>
-          {children.length && (
-            <div>{isOpen ? <ExpandMoreIcon /> : <ChevronRightIcon />}</div>
+
+          {!!children.length && (
+            <AddButton>{isOpen ? <OpenedIcon /> : <ClosedIcon />}</AddButton>
           )}
         </HeaderInner>
-        <button>add</button>
+
+        {toggleAddButton && (
+          <Button type="button" onClick={handleAdd}>
+            <AddCircle />
+          </Button>
+        )}
       </Header>
-      {isOpen && children && <Children>{children}</Children>}
+
+      {isOpen && children && children}
     </Container>
   );
 };
