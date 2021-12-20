@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 
 import mocks from '../../mocks';
 
-import CategoryItem from './CategoryItem';
+import CategoryItem from '../CategoryItem';
 import { Container } from './style';
 
 const Recursive = () => {
