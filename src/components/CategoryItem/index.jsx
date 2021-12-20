@@ -12,7 +12,7 @@ import {
   AddButton,
 } from './style';
 
-const ChildrenItem = ({ children, label, id, onAddCallBack }) => {
+const ChildrenItem = ({ children, label, id, onAddCallback }) => {
   const [toggleAddButton, setToggleAddButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const ChildrenItem = ({ children, label, id, onAddCallBack }) => {
     const val = prompt('Enter name:');
 
     if (val) {
-      onAddCallBack(id, val);
+      onAddCallback(id, val);
     }
   };
 
