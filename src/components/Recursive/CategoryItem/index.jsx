@@ -13,7 +13,7 @@ import {
 } from './style';
 
 const ChildrenItem = ({ children, label, id, onAddCallBack }) => {
-  const [toggleAddButton, setGoggleAddButton] = useState(false);
+  const [toggleAddButton, setToggleAddButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleAdd = () => {
@@ -27,8 +27,8 @@ const ChildrenItem = ({ children, label, id, onAddCallBack }) => {
   return (
     <Container>
       <Header
-        onMouseEnter={() => setGoggleAddButton(true)}
-        onMouseLeave={() => setGoggleAddButton(false)}
+        onMouseEnter={() => setToggleAddButton(true)}
+        onMouseLeave={() => setToggleAddButton(false)}
       >
         <HeaderInner
           hasChildren={!!children}
