@@ -1,7 +1,7 @@
 const modifyArray = (arr, modifier) => {
   const recursiveLoop = (array) =>
     array.map((item) => {
-      const shouldContinue = modifier({ currentItem: item, parent: array });
+      const shouldContinue = modifier({ current: item, parent: array });
 
       if (shouldContinue && item.children.length) {
         recursiveLoop(item.children);
@@ -14,8 +14,8 @@ const modifyArray = (arr, modifier) => {
 };
 
 export const addChildren = (array, parentId, title) => {
-  const modifier = ({ currentItem }) => {
-    const { id, children } = currentItem;
+  const modifier = ({ current }) => {
+    const { id, children } = current;
 
     if (id === parentId) {
       children.push({
@@ -34,9 +34,12 @@ export const addChildren = (array, parentId, title) => {
 };
 
 export const removeChildren = (array, itemId) => {
-  const modifier = ({ currentItem, parent }) => {
-    if (currentItem.id === itemId) {
-      parent.splice(parent.findIndex((item) => item.id === itemId, 1));
+  const modifier = ({ current, parent }) => {
+    if (current.id === itemId) {
+      parent.splice(
+        parent.findIndex((item) => item.id === itemId),
+        1
+      );
 
       return false;
     }
