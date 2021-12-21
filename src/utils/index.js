@@ -1,9 +1,9 @@
 const modifyArray = (arr, modifier) => {
   const recursiveLoop = (array) =>
     array.map((item) => {
-      const shouldContinue = modifier({ current: item, parent: array });
+      const didModify = modifier({ current: item, parent: array });
 
-      if (shouldContinue && item.children.length) {
+      if (!didModify && item.children.length) {
         recursiveLoop(item.children);
       }
 
@@ -24,10 +24,10 @@ export const addChildren = (array, parentId, title) => {
         children: [],
       });
 
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   };
 
   return modifyArray(array, modifier);
@@ -41,10 +41,10 @@ export const removeItem = (array, itemId) => {
         1
       );
 
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   };
 
   return modifyArray(array, modifier);
