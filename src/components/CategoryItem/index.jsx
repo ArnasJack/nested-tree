@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import OpenedIcon from '@material-ui/icons/ExpandMore';
 import ClosedIcon from '@material-ui/icons/ChevronRight';
 import AddCircle from '@material-ui/icons/AddCircleOutline';
+import RemoveCircle from '@material-ui/icons/RemoveCircleOutline';
 
 import {
   Container,
@@ -12,7 +13,13 @@ import {
   AddButton,
 } from './style';
 
-const ChildrenItem = ({ children, label, id, onAddCallback }) => {
+const ChildrenItem = ({
+  children,
+  label,
+  id,
+  onAddCallback,
+  onRemoveCallback,
+}) => {
   const [toggleAddButton, setToggleAddButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,9 +50,14 @@ const ChildrenItem = ({ children, label, id, onAddCallback }) => {
         </HeaderInner>
 
         {toggleAddButton && (
-          <Button type="button" onClick={handleAdd}>
-            <AddCircle />
-          </Button>
+          <div>
+            <Button type="button" onClick={handleAdd}>
+              <AddCircle />
+            </Button>
+            <Button type="button" onClick={() => onRemoveCallback(id)}>
+              <RemoveCircle />
+            </Button>
+          </div>
         )}
       </Header>
 

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 
 import mocks from '../../mocks';
-import { addChildren } from '../../utils';
+import { addChildren, removeChildren } from '../../utils';
 
 import CategoryItem from '../CategoryItem';
 import { Container } from './style';
@@ -13,8 +13,18 @@ const Recursive = () => {
     setData(addChildren(data, parentId, title));
   };
 
+  const handleRemove = (id) => {
+    setData(removeChildren(data, id));
+  };
+
   const createTree = ({ id, title, children }) => (
-    <CategoryItem key={id} label={title} id={id} onAddCallback={handleAdd}>
+    <CategoryItem
+      key={id}
+      label={title}
+      id={id}
+      onAddCallback={handleAdd}
+      onRemoveCallback={handleRemove}
+    >
       {!!children.length &&
         children.map((category) => (
           <Fragment key={category.id}>{createTree(category)}</Fragment>
