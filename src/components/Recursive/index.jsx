@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 
 import mocks from '../../mocks';
-import { addChildren, removeChildren } from '../../utils';
+import { addChildren, removeItem } from '../../utils';
 
 import CategoryItem from '../CategoryItem';
 import { Container } from './style';
@@ -14,7 +14,7 @@ const Recursive = () => {
   };
 
   const handleRemove = (id) => {
-    setData(removeChildren(data, id));
+    setData(removeItem(data, id));
   };
 
   const createTree = ({ id, title, children }) => (

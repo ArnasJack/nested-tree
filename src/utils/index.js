@@ -33,7 +33,7 @@ export const addChildren = (array, parentId, title) => {
   return modifyArray(array, modifier);
 };
 
-export const removeChildren = (array, itemId) => {
+export const removeItem = (array, itemId) => {
   const modifier = ({ current, parent }) => {
     if (current.id === itemId) {
       parent.splice(
