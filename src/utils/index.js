@@ -1,6 +1,4 @@
 export const addChildren = (initialArray, parentId, title) => {
-  var arr = initialArray;
-
   const addValue = (array) =>
     array.map((item) => {
       const { id, children } = item;
@@ -20,5 +18,5 @@ export const addChildren = (initialArray, parentId, title) => {
       return item;
     });
 
-  return addValue(arr);
+  return addValue(initialArray);
 };
