@@ -38,7 +38,7 @@ export const addItem = (array, parentId, item) => {
 };
 
 export const removeItem = (array, itemId) => {
-  if (!array.length || !itemId) {
+  if (!array.length) {
     return [];
   }
 
