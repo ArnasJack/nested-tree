@@ -4,7 +4,7 @@ const modifyArray = (initialArray, modifier) => {
   const recursiveLoop = (array) => {
     for (let i = 0; i < array.length; i++) {
       const current = array[i];
-      const didModify = modifier({ current, parent: array });
+      const didModify = modifier({ current, parent: array }, i);
 
       if (didModify) {
         return;
@@ -50,7 +50,7 @@ export const removeItem = (array, itemId) => {
     return [];
   }
 
-  const modifier = ({ current, parent }) => {
+  const modifier = ({ current, parent }, index) => {
     if (array.length === 1 && array[0].id === itemId) {
       parent.length = 0;
 
@@ -58,10 +58,7 @@ export const removeItem = (array, itemId) => {
     }
 
     if (current.id === itemId) {
-      parent.splice(
-        parent.findIndex((item) => item.id === itemId),
-        1
-      );
+      parent.splice(index, 1);
 
       return true;
     }
