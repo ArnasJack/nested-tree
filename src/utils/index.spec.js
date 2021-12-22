@@ -51,12 +51,6 @@ const mock = [
 const newItem = { id: 'newTestId', title: 'title2', children: [] };
 
 describe('addItem', () => {
-  it('should update the array to include new value when array is empty', () => {
-    const results = addItem([], null, newItem);
-
-    expect(results[0]).toEqual(newItem);
-  });
-
   it('should update the array to include new value one level deep', () => {
     const results = addItem(mock, '1', newItem);
 
@@ -73,5 +67,17 @@ describe('addItem', () => {
     const results = addItem(mock, '2.1.1', newItem);
 
     expect(results[1].children[0].children[0].children[1]).toEqual(newItem);
+  });
+
+  it('should update the array to include new value when array is empty', () => {
+    const results = addItem([], undefined, newItem);
+
+    expect(results[0]).toEqual(newItem);
+  });
+
+  it('should update the array to include new value when there is no parent id', () => {
+    const results = addItem(mock, undefined, newItem);
+
+    expect(results[2]).toEqual(newItem);
   });
 });

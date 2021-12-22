@@ -6,7 +6,11 @@ const modifyArray = (initialArray, modifier) => {
       const current = array[i];
       const didModify = modifier({ current, parent: array });
 
-      if (!didModify && current.children.length) {
+      if (didModify) {
+        return;
+      }
+
+      if (current.children.length) {
         recursiveLoop(current.children);
       }
     }
@@ -22,7 +26,7 @@ export const addItem = (array, parentId, item) => {
     return [item];
   }
 
-  if (!parentId) {
+  if (!parentId && parentId !== 0) {
     return [...array, item];
   }
 
