@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import mocks from '../../mocks';
-import { addChildren, removeItem } from '../../utils';
+import { addItem, removeItem } from '../../utils';
 
 import CategoryItem from '../CategoryItem';
 import { Container } from './style';
@@ -10,7 +11,13 @@ const Recursive = () => {
   const [data, setData] = useState(mocks);
 
   const handleAdd = (parentId, title) => {
-    setData(addChildren(data, parentId, title));
+    const newItem = {
+      id: uuidv4(),
+      title,
+      children: [],
+    };
+
+    setData(addItem(data, parentId, newItem));
   };
 
   const handleRemove = (id) => {

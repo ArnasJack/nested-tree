@@ -13,16 +13,12 @@ const modifyArray = (arr, modifier) => {
   return recursiveLoop(arr);
 };
 
-export const addChildren = (array, parentId, title) => {
+export const addItem = (array, parentId, item) => {
   const modifier = ({ current }) => {
     const { id, children } = current;
 
     if (id === parentId) {
-      children.push({
-        id: `${children.length}-${id}`,
-        title,
-        children: [],
-      });
+      children.push(item);
 
       return true;
     }
