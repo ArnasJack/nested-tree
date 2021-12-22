@@ -1,5 +1,5 @@
 const modifyArray = (initialArray, modifier) => {
-  var newArray = [...initialArray];
+  var modifiedArray = [...initialArray];
 
   const recursiveLoop = (array) => {
     for (let i = 0; i < array.length; i++) {
@@ -16,9 +16,9 @@ const modifyArray = (initialArray, modifier) => {
     }
   };
 
-  recursiveLoop(newArray);
+  recursiveLoop(modifiedArray);
 
-  return newArray;
+  return modifiedArray;
 };
 
 export const addItem = (array, parentId, item) => {
