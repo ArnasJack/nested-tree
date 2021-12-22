@@ -1,16 +1,20 @@
-const modifyArray = (arr, modifier) => {
-  const recursiveLoop = (array) =>
-    array.map((item) => {
-      const didModify = modifier({ current: item, parent: array });
+const modifyArray = (initialArray, modifier) => {
+  var newArray = [...initialArray];
 
-      if (!didModify && item.children.length) {
-        recursiveLoop(item.children);
+  const recursiveLoop = (array) => {
+    for (let i = 0; i < array.length; i++) {
+      const current = array[i];
+      const didModify = modifier({ current, parent: array });
+
+      if (!didModify && current.children.length) {
+        recursiveLoop(current.children);
       }
+    }
+  };
 
-      return item;
-    });
+  recursiveLoop(newArray);
 
-  return recursiveLoop(arr);
+  return newArray;
 };
 
 export const addItem = (array, parentId, item) => {
@@ -31,6 +35,12 @@ export const addItem = (array, parentId, item) => {
 
 export const removeItem = (array, itemId) => {
   const modifier = ({ current, parent }) => {
+    if (array.length === 1 && array[0].id === itemId) {
+      parent.length = 0;
+
+      return true;
+    }
+
     if (current.id === itemId) {
       parent.splice(
         parent.findIndex((item) => item.id === itemId),
