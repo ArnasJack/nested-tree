@@ -22,6 +22,10 @@ export const addItem = (array, parentId, item) => {
     return [item];
   }
 
+  if (!parentId) {
+    return [...array, item];
+  }
+
   const modifier = ({ current }) => {
     const { id, children } = current;
 
