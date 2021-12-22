@@ -34,6 +34,10 @@ export const addItem = (array, parentId, item) => {
 };
 
 export const removeItem = (array, itemId) => {
+  if (!array.length || !itemId) {
+    return [];
+  }
+
   const modifier = ({ current, parent }) => {
     if (array.length === 1 && array[0].id === itemId) {
       parent.length = 0;
