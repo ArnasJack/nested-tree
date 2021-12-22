@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { addItem } from './';
 
 const mock = [
@@ -52,22 +48,28 @@ const mock = [
   },
 ];
 
+const newItem = { id: 'newTestId', title: 'title2', children: [] };
+
 describe('addItem', () => {
+  it('should update the array to include new value when array is empty', () => {
+    const results = addItem([], null, newItem);
+
+    expect(results[0]).toEqual(newItem);
+  });
+
   it('should update the array to include new value one level deep', () => {
-    const newItem = { id: 'newTestId', title: 'title2', children: [] };
     const results = addItem(mock, '1', newItem);
 
     expect(results[0].children[1]).toEqual(newItem);
   });
+
   it('should update the array to include new value two levels deep', () => {
-    const newItem = { id: 'newTestId', title: 'title2', children: [] };
     const results = addItem(mock, '1.1', newItem);
 
     expect(results[0].children[0].children[1]).toEqual(newItem);
   });
 
   it('should update the array to include new value three levels deep', () => {
-    const newItem = { id: 'newTestId', title: 'title2', children: [] };
     const results = addItem(mock, '2.1.1', newItem);
 
     expect(results[1].children[0].children[0].children[1]).toEqual(newItem);

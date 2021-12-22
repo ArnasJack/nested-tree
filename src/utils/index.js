@@ -18,6 +18,10 @@ const modifyArray = (initialArray, modifier) => {
 };
 
 export const addItem = (array, parentId, item) => {
+  if (!array.length) {
+    return [item];
+  }
+
   const modifier = ({ current }) => {
     const { id, children } = current;
 
