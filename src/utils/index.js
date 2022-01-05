@@ -1,3 +1,5 @@
+import { orderBy } from 'lodash';
+
 const modifyArray = (initialArray, modifier) => {
   var modifiedArray = [...initialArray];
 
@@ -67,4 +69,30 @@ export const removeItem = (array, itemId) => {
   };
 
   return modifyArray(array, modifier);
+};
+
+export const transformFlatArray = (arr) => {
+  const flatArray = orderBy(arr, ['id']);
+
+  var array = [];
+  const nodeMap = {};
+
+  for (let i = 0; i < flatArray.length; i++) {
+    var item = {
+      ...flatArray[i],
+      children: [],
+    };
+
+    nodeMap[item.id] = item;
+
+    if (!item.parentId) {
+      array.push(item);
+    }
+
+    if (item.parentId) {
+      nodeMap[item.parentId].children.push(item);
+    }
+  }
+
+  return array;
 };
