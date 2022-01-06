@@ -1,6 +1,5 @@
 import React from 'react';
 import { orderBy } from 'lodash';
-import mocks from '../../mocks';
 
 const Tree = ({ children }) => {
   return <ul>{children}</ul>;

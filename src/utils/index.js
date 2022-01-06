@@ -75,6 +75,7 @@ export const transformFlatArray = (arr) => {
   const flatArray = orderBy(arr, ['id']);
 
   var array = [];
+
   const nodeMap = {};
 
   for (let i = 0; i < flatArray.length; i++) {

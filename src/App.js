@@ -3,7 +3,7 @@ import React from 'react';
 import Recursive from 'components/Recursive';
 import Iterative from 'components/Iterative';
 import { transformFlatArray } from 'utils';
-import mocks from './mocks';
+// import mocks from './mocks';
 
 const flatArray = [
   { title: 'title1', id: '1', parentId: null },
